@@ -1,7 +1,7 @@
 {
-  "name": "javascript-development-starter-kit",
+  "name": "d3-development-starter-kit",
   "version": "1.0.0",
-  "description": "JavaScript development boilerplate",
+  "description": "D3 development boilerplate",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch start-mockapi",

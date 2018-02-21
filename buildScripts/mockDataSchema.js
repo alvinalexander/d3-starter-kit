@@ -6,7 +6,9 @@ export const schema = {
       "minItems": 3,
       "maxItems": 5,
       "items": {
-        "type": "number"
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100,
       }
     }
   },
