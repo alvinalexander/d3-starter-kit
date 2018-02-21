@@ -1,31 +1,41 @@
 import './index.css';
+import * as d3 from 'd3';
+import {getNumbers} from './api/numbersApi';
 
-import {getUsers, deleteUser} from './api/userApi';
 
-getUsers().then(result => {
-  let usersBody = "";
+let numbers =[];
 
-  result.forEach(user => {
-    usersBody+= `<tr>
-      <td><a href="#" data-id="${user.id}" class="deleteUser">Delete</a></td>
-      <td>${user.id}</td>
-      <td>${user.firstName}</td>
-      <td>${user.lastName}</td>
-      <td>${user.email}</td>
-      </tr>`
-  });
-  global.document.getElementById('users').innerHTML = usersBody;
-  const deleteLinks = global.document.getElementsByClassName('deleteUser');
-
-  // Must use array.from to create a real array from a DOM collection
-  // getElementsByClassname only returns an "array like" object
-  Array.from(deleteLinks, link => {
-    link.onclick = function(event) {
-      const element = event.target;
-      event.preventDefault();
-      deleteUser(element.attributes["data-id"].value);
-      const row = element.parentNode.parentNode;
-      row.parentNode.removeChild(row);
-    };
-  });
+numbers = getNumbers().then(value => {
+  return value;
 });
+
+numbers = numbers.map(n =>{
+  n
+})
+
+console.log(numbers);
+const data = [4, 8, 15, 16, 23, 42];
+const width = 420,barHeight = 20;
+
+const x = d3.scaleLinear()
+    .domain([0, d3.max(data)])
+    .range([0, width]);
+
+const chart = d3.select(".chart")
+    .attr("width", width)
+    .attr("height", barHeight * data.length);
+
+const bar = chart.selectAll("g")
+    .data(data)
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+
+bar.append("rect")
+    .attr("width", x)
+    .attr("height", barHeight - 1);
+
+bar.append("text")
+    .attr("x", function(d) { return x(d) - 3; })
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .text(function(d) { return d; });

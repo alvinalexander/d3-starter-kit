@@ -14,6 +14,10 @@ export default {
     filename: 'bundle.js'
   },
   plugins: [],
+  resolve: {
+    mainFields: ['module', 'jsnext:main', 'main']
+  },
+
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
