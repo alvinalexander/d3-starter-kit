@@ -1,2 +1,2 @@
-# Javascript Starter Kit
-This is a starter kit for javascript web app projects
+# D3 Starter Kit
+This is a starter kit for D3 development projects
