@@ -4,10 +4,13 @@
   "description": "JavaScript development boilerplate",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch start-mockapi",
     "open:src": "babel-node buildScripts/srcServer.js",
     "lint": "node_modules/eslint-watch/bin/esw webpack.config.* src buildScripts --color",
-    "lint:watch": "npm run lint -- --watch"
+    "lint:watch": "npm run lint -- --watch",
+    "genrate-mock-data": "babel-node buildScripts/generateMockData.js",
+    "prestart-mockapi": "npm run genrate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
   },
   "author": "Alvin Ghouas",
   "license": "MIT",
