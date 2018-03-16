@@ -10,12 +10,15 @@
     "lint:watch": "npm run lint -- --watch",
     "genrate-mock-data": "babel-node buildScripts/generateMockData.js",
     "prestart-mockapi": "npm run genrate-mock-data",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
+    "test": "jest"
   },
   "author": "Alvin Ghouas",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "eslint-watch": "^2.1.14",
+    "jest": "^22.4.2",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
@@ -53,5 +56,22 @@
     "webpack-hot-middleware": "2.13.0",
     "webpack-md5-hash": "0.0.5",
     "d3": "4.4.1"
+  },
+  "jest": {
+    "modulePaths": [
+      "/shared/vendor/modules"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "shared"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   }
 }
